@@ -99,7 +99,7 @@ class App extends Component {
         <header className="App-header">
         <h1 className="App-title">Independent Coffeehouses</h1>
         <h3 className="App-desc">Coffee that isn't Starbucks!</h3>
-        <p className="App-joke">(Sorry. No such thing. Starbucks has taken over.)</p>
+        <p className="App-joke">(Just Kidding. Starbucks has taken over...!)</p>
         </header>
         <main>
           <Search
