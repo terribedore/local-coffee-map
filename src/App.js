@@ -29,20 +29,20 @@ class App extends Component {
   getPlaces = (query, location) => {
     const endPoint = "https://api.foursquare.com/v2/venues/explore?"
     const params = {
-        client_id: "G04GDHOHNV44SCN05HBQDM0TACJMTYVR13OWDX4NJ3N3JUWL",
-        client_secret: "KE10VXIQUO1L2FFLOKYWDHTZOKNU23RFRFNXEMYMX1E31QM4",
-        query: query,
-        near: location,
-        v: "20190122"
+      client_id: "G04GDHOHNV44SCN05HBQDM0TACJMTYVR13OWDX4NJ3N3JUWL",
+      client_secret: "KE10VXIQUO1L2FFLOKYWDHTZOKNU23RFRFNXEMYMX1E31QM4",
+      query: query,
+      near: location,
+      v: "20190122"
     }
 
-    // Fetch
-    axios.get(endPoint + new URLSearchParams(params)).then(response => {
-      this.setState({
-          allPlaces: response.data.response.groups[0].items,
-          places: response.data.response.groups[0].items
-      }, this.loadMap)
-    })
+  // Fetch
+  axios.get(endPoint + new URLSearchParams(params)).then(response => {
+    this.setState({
+      allPlaces: response.data.response.groups[0].items,
+      places: response.data.response.groups[0].items
+    }, this.loadMap)
+  })
   }
 
   /* Map */
@@ -60,44 +60,37 @@ class App extends Component {
 
       // Create Markers
       let marker = new window.google.maps.Marker({
-          position: {lat: place.venue.location.lat, lng: place.venue.location.lng},
-          map: map,
-          animation: window.google.maps.Animation.DROP,
-          title: place.venue.name
+        position: {lat: place.venue.location.lat, lng: place.venue.location.lng},
+        map: map,
+        animation: window.google.maps.Animation.DROP,
+        title: place.venue.name
       })
 
-          // Add each created marker to the 'markers' array
-          this.state.markers.push(marker)
+      // Add each created marker to the 'markers' array
+      this.state.markers.push(marker)
 
-          // Create InfoWindow
-          let content = `
-                          <h1>${place.venue.name}</h1>
-                          <p>Address: ${place.venue.location.formattedAddress[0]} ${place.venue.location.formattedAddress[1]} ${place.venue.location.formattedAddress[2]}</p>
-                          <p>lat: ${place.venue.location.lat}, long: ${place.venue.location.lng}</p>
-                          `
+      // Create InfoWindow
+      let content = `
+        <h1>${place.venue.name}</h1>
+        <p>Address: ${place.venue.location.formattedAddress[0]} ${place.venue.location.formattedAddress[1]}</p>
+        <p>lat: ${place.venue.location.lat}, long: ${place.venue.location.lng}</p>
+        `
 
-          // Display the InfoWindow after clicking on the Marker
-          marker.addListener('click', function() {
+      // Display the InfoWindow after clicking on the Marker
+      marker.addListener('click', function() {
 
-              // Update 'InfoWindow' content
-              infowindow.setContent(content)
+        // Update 'InfoWindow' content
+        infowindow.setContent(content)
 
-              // Open An 'InfoWindow'
-              infowindow.open(map, marker)
-
-              // Animate The Marker
-              if (marker.getAnimation() !== null) {
-                  marker.setAnimation(null);
-              } else {
-                  marker.setAnimation(window.google.maps.Animation.BOUNCE);
-              }
-          })
+        // Open An 'InfoWindow'
+        infowindow.open(map, marker)
       })
+    })
 
   }
 
   updatePlaces = (newPlaces) => {
-      this.setState({places: newPlaces})
+    this.setState({places: newPlaces})
   }
 
   render() {
