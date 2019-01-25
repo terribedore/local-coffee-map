@@ -4,8 +4,9 @@ import axios from 'axios'
 import './App.css'
 
 // components
-import Search from './Components/Search'
+import Menu from './Components/Menu'
 import Map from './Components/Map'
+import Header from './Components/Header'
 
 
 class App extends Component {
@@ -96,19 +97,18 @@ class App extends Component {
   render() {
     return (
       <div>
-        <header className="App-header">
-        <h1 className="App-title">Independent Coffeehouses</h1>
-        <h3 className="App-desc">Coffee that isn't Starbucks!</h3>
-        <p className="App-joke">(Just Kidding. Starbucks has taken over...!)</p>
-        </header>
+        <Header/>
         <main>
-          <Search
+          <Menu
               places={this.state.allPlaces}
               markers={this.state.markers}
               updatePlaces={this.updatePlaces}
           />
           <Map/>
         </main>
+        <footer className="App-footer">
+          <h6> By <a href="https://github.com/terribedore">@terribedore</a>. Map provided by Google Maps API. Marker information provided by FourSquare.</h6>
+        </footer>
       </div>
     )
   }
