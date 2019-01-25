@@ -1,57 +1,77 @@
-h1 {
+main {
+  display: flex;
+}
+aside {
+  width: 30%;
+  height: calc(100vh - 65px);
+  padding: 0 0.5rem;
+  background: #ffffff;
+}
+aside h2 {
+  color: #222222;
+  margin: 1rem 0;
+  text-align: center;
+}
+aside .search-form {
+  width: 100%;
+  margin-bottom: 1rem;
+}
+aside .search-form label {
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
   display: block;
-  font-size: 2em;
-  margin: 0.67em 0 0 0;
-  margin-inline-start: 0px;
-  margin-inline-end: 0px;
+  text-align: center;
   font-weight: bold;
 }
-h3 {
-  display: block;
-  font-size: 1.17em;
-  margin: 0.4em;
-  margin-inline-start: 0px;
-  margin-inline-end: 0px;
-  font-weight: bold;
+aside .search-form input {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #222222;
+  box-sizing: border-box;
 }
-p {
-  display: block;
-  font-size: 0.83em;
-  margin: 0 0 1.67em;
-  margin-inline-start: 0px;
-  margin-inline-end: 0px;
+aside .search-result {
+  max-height: calc(85vh - 61px);
+  overflow-y: scroll;
+}
+aside .search-result li {
+  padding: 0.5rem;
+  color: #222222;
+  cursor: pointer;
+  transition: all 300ms ease-in-out;
+}
+aside .search-result li:hover {
+  color: #ffffff;
+  background: #222222;
 }
 
 .App {
   text-align: center;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 10vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+header {
+  background-color: #222;
+  padding: 1rem;
   color: white;
 }
 
-.toggle-menu {
-    position: absolute;
-    line-height: 1.9rem;
-    font-size: 1.4rem;
-    cursor: pointer;
-    color: white;
+.App-title, .App-desc, .App-joke {
+  text-align: center;
 }
 
-.App-link {
-  color: #61dafb;
+.App-title {
+  font-size: 1.5em;
+}
+
+@keyframes App-logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.toggle-menu {
+  position: absolute;
+  line-height: 1.9rem;
+  font-size: 1.4rem;
+  cursor: pointer;
 }
 
 #map {
@@ -60,7 +80,21 @@ p {
 }
 
 @media all and (max-width: 767px) {
-    #map {
-        width: 100%
-    }
+  .toggle-menu {
+    display: block
+  }
+
+  #map {
+    width: 100%
+  }
+  aside {
+    position: fixed;
+    width: 250px;
+    left: -100%;
+    transition: all 500ms ease-in-out;
+    z-index: 99;
+  }
+  aside.toggle {
+    left: 0
+  }
 }

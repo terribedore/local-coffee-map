@@ -4,10 +4,9 @@ import axios from 'axios'
 import './App.css'
 
 // components
-import Menu from './Components/Menu'
+import Search from './Components/Search'
 import Map from './Components/Map'
 import Header from './Components/Header'
-
 
 class App extends Component {
 
@@ -19,7 +18,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    this.getPlaces("Starbucks", "San Antonio")
+    this.getPlaces("coffee", "San Antonio")
   }
 
   loadMap = () => {
@@ -99,7 +98,7 @@ class App extends Component {
       <div>
         <Header/>
         <main>
-          <Menu
+          <Search
               places={this.state.allPlaces}
               markers={this.state.markers}
               updatePlaces={this.updatePlaces}
