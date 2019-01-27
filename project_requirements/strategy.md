@@ -1,5 +1,8 @@
 REMINDER: Place new entries at the TOP of this doc!
 
+2019/01/25:
+Used https://css-tricks.com/using-data-in-react-with-the-fetch-api-and-axios/#article-header-id-4 to figure out catch method and error handling. I _think_ I understand it...
+
 2019/01/24
 Another complete refresh. Goal is to do all of this offline - I get too carried away by my ideas!
 

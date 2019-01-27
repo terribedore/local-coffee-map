@@ -14,7 +14,9 @@ class App extends Component {
     allPlaces: [],
     places: [],
     markers: [],
-    latLong: "29.424349, -98.491142"
+    latLong: "29.424349, -98.491142",
+    isLoading: true,
+    errors: null
   }
 
   componentDidMount() {
@@ -37,13 +39,19 @@ class App extends Component {
     }
 
   // Fetch
-  axios.get(endPoint + new URLSearchParams(params)).then(response => {
-    this.setState({
-      allPlaces: response.data.response.groups[0].items,
-      places: response.data.response.groups[0].items
-    }, this.loadMap)
-  })
+  axios.get(endPoint + new URLSearchParams(params))
+    .then(response => {
+      this.setState({
+        allPlaces: response.data.response.groups[0].items,
+        places: response.data.response.groups[0].items,
+        isLoading: false
+      }, this.loadMap)
+    })
+    .catch(error =>
+      this.setState({ error, isLoading: false })
+    )
   }
+
 
   /* Map */
   initMap = () => {
@@ -84,6 +92,13 @@ class App extends Component {
 
         // Open An 'InfoWindow'
         infowindow.open(map, marker)
+
+        // Animate The Marker
+        if (marker.getAnimation() !== null) {
+            marker.setAnimation(null);
+        } else {
+            marker.setAnimation(window.google.maps.Animation.BOUNCE);
+        }
       })
     })
 
@@ -120,6 +135,11 @@ function loadJS(src) {
   script.async = true;
   ref.parentNode.insertBefore(script, ref);
 }
+
+//document.getElementById("map").onerror = function() {myFunction()};
+//function myFunction() {
+//  document.getElementById("map").innerHTML = "The map could not be loaded.";
+//}
 
 
 export default App

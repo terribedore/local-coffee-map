@@ -13,11 +13,11 @@ class Search extends Component {
         this.setState({ query })
 
         let allPlaces = this.props.places
-        let newPlaces
+
 
         if(this.state.query && (this.state.query !== '')) {
             const match = new RegExp(escapeRegExp(query), 'i');
-            newPlaces = allPlaces.filter((place) => match.test(place.venue.name))
+            let newPlaces = allPlaces.filter((place) => match.test(place.venue.name))
             this.setState({places: newPlaces})
             this.props.updatePlaces(newPlaces)
         } else {
@@ -37,10 +37,12 @@ class Search extends Component {
         return (
             <aside>
                 <div className="search-form">
-                    <label htmlFor="searchQuery">Find A Place!</label>
+                    <label htmlFor="searchQuery">Find Your Java!</label>
                     <input
                         id="searchQuery"
                         type="text"
+                        role="search"
+                        aria-label="search"
                         placeholder="Search Here"
                         onChange={(e) => this.updateQuery(e.target.value)}
                         value={this.state.query}
@@ -52,8 +54,10 @@ class Search extends Component {
                         {this.state.places.map((place, index) => (
                             <li
                                 key={index}
-                                tabindex={index}
+                                tabIndex={index}
                                 className="item"
+                                aria-label="search-results"
+                                onKeyPress={() => this.triggerMarkerClick(place.venue.name)}
                                 onClick={() => this.triggerMarkerClick(place.venue.name)}
                             >
                                 {place.venue.name}

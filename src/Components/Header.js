@@ -11,7 +11,12 @@ class Header extends Component {
 
     return (
       <header>
-        <span className="toggle-menu fas fa-bars" onClick={this.toggleMenu}></span>
+        <span
+        tabIndex="0"
+        className="toggle-menu fas fa-bars"
+        onClick={this.toggleMenu}
+        onKeyPress={this.toggleMenu}
+        ></span>
         <h1 className="App-title">Coffee Houses</h1>
       </header>
     )

@@ -24,6 +24,8 @@ To get started right away:
 * install all project dependencies with `npm install`
 * start the development server with `npm start`
 
+NOTE: There is a Service Worker enabled. It only works in production mode. This lets the app load faster on subsequent visits in production, and gives it offline capabilities. However, it also means that developers (and users) will only see deployed updates on subsequent visits to a page, after all the existing tabs open on the page have been closed, since previously cached resources are updated in the background. BE SURE TO CLOSE DOWN THE LOCAL SERVER OCCASIONALLY FOR UPDATES AND CHANGES. (you do so by closing terminal window)
+
 
 ## Usage
 
