@@ -39,6 +39,10 @@ aside .search-result li {
   cursor: pointer;
   transition: all 300ms ease-in-out;
 }
+aside .search-result li:focus {
+  color: #ffffff;
+  background: #222222;
+}
 aside .search-result li:hover {
   color: #ffffff;
   background: #222222;
