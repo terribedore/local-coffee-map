@@ -137,10 +137,4 @@ function loadJS(src) {
   ref.parentNode.insertBefore(script, ref);
 }
 
-//document.getElementById("map").onerror = function() {myFunction()};
-//function myFunction() {
-//  document.getElementById("map").innerHTML = "The map could not be loaded.";
-//}
-
-
 export default App
