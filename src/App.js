@@ -48,8 +48,8 @@ class App extends Component {
       }, this.loadMap)
     })
     .catch(error =>
-      this.setState({ error, isLoading: false })
-      alert("Hello! I am an alert box!!")
+      this.setState({ error, isLoading: false }),
+      alert("Hello! I am an alert box!! Click OK to continue loading.")
     )
   }
 
