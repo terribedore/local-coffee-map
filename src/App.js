@@ -49,6 +49,7 @@ class App extends Component {
     })
     .catch(error =>
       this.setState({ error, isLoading: false })
+      alert("Hello! I am an alert box!!")
     )
   }
 
